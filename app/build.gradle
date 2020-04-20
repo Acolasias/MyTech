@@ -65,4 +65,5 @@ dependencies {
     implementation 'com.github.xiaohaibin:XBanner:androidx_v1.0.2'
     //TabLayout：依赖
     implementation 'com.google.android.material:material:1.0.0'
+    implementation project(path: ':arclibrary')
 }
