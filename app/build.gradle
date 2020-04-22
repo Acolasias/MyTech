@@ -5,19 +5,39 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.wd.mytech"
+        applicationId "com.wd.tech"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。   // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+            abiFilters 'armeabi-v7a' //'armeabi-v7a',  'arm64-v8a'
+            abiFilters 'armeabi' //'armeabi-v7a',  'arm64-v8a'
+//            moduleName "app"
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            jni.srcDirs = []    //disable automatic ndk-build
+        }
+    }
+    signingConfigs { //在android代码块下写
+        debug {//这个地方可以写成 release
+            storeFile file('tech.keystore')
+            keyAlias "tech"
+            storePassword "123456"
+            keyPassword "123456"
         }
     }
     compileOptions {
@@ -34,6 +54,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //人脸识别
+    implementation 'com.github.tyhjh:PermissionUtil:v1.0.5'
+    implementation 'com.github.tyhjh:picturePickUtil:v1.0.6'
+
     //微信依赖
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.0.2'
     //节操播放器依赖
@@ -41,14 +66,14 @@ dependencies {
     //XRecyclerView依赖：
     implementation 'com.jcodecraeer:xrecyclerview:1.6.0'
     //retrofit2.0依赖
-    implementation'com.squareup.retrofit2:retrofit:+'
+    implementation 'com.squareup.retrofit2:retrofit:+'
     //让retrofit支持Gson自动解析json
-    implementation'com.squareup.retrofit2:converter-gson:+'
+    implementation 'com.squareup.retrofit2:converter-gson:+'
     //让retrofit支持Rxjava2
-    implementation'com.squareup.retrofit2:adapter-rxjava2:+'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:+'
     //Rxjava依赖
-    implementation'io.reactivex.rxjava2:rxjava:+'
-    implementation'io.reactivex.rxjava2:rxandroid:+'
+    implementation 'io.reactivex.rxjava2:rxjava:+'
+    implementation 'io.reactivex.rxjava2:rxandroid:+'
     //Okhttp依赖
     implementation 'com.squareup.okhttp3:okhttp:3.9.0'
     //Okhttp日志拦截器
