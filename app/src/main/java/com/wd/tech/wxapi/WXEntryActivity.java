@@ -75,9 +75,10 @@ public class WXEntryActivity extends BaseActivity<TechPresenter> implements IWXA
                         //就在这个地方，用网络库什么的或者自己封的网络api，发请求去咯，注意是get请求
 //                        presenter.getWeixinData(code);
                         HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("ak", 1);
+                        HashMap<String, Object> headMap = new HashMap<>();
+                        headMap.put("ak", 1);
                         hashMap.put("code", code);
-                        mPresenter.postDoParams(MyUrls.WEIXINLOG_URL,WeixinEntity.class,hashMap);
+                        mPresenter.postDoHeadParams(MyUrls.WEIXINLOG_URL,WeixinEntity.class,headMap,hashMap);
                         break;
                     case RETURN_MSG_TYPE_SHARE:
                         Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
@@ -92,18 +93,18 @@ public class WXEntryActivity extends BaseActivity<TechPresenter> implements IWXA
     @Override
     public void onSuccess(Object o) {
         if (o instanceof WeixinEntity && TextUtils.equals("0000", ((WeixinEntity) o).getStatus())){
+
             sp = getSharedPreferences("login.dp", MODE_PRIVATE);
             WeixinEntity weixinEntity = (WeixinEntity) o;
             WeixinEntity.ResultBean result = weixinEntity.getResult();
             SharedPreferences.Editor edit = sp.edit();
-            WeixinEntity.ResultBean.UserInfoBean userInfo = result.getUserInfo();
-            edit.putString("headPic",userInfo.getHeadPic());
-            edit.putString("nickName",userInfo.getNickName());
+            edit.putString("headPic",result.getHeadPic());
+            edit.putString("nickName",result.getNickName());
             edit.putInt("uid",result.getUserId());
             edit.putString("sid",result.getSessionId());
             edit.putBoolean("b",true);
             edit.commit();
-            Log.i("xxx",userInfo.getNickName());
+
             Intent intent = new Intent(WXEntryActivity.this, MainActivity.class);
             intent.putExtra("login",true);
             startActivity(intent);

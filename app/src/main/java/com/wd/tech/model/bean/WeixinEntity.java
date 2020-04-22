@@ -8,7 +8,7 @@ package com.wd.tech.model.bean;
 public class WeixinEntity {
 
     /**
-     * result : {"sessionId":"158548632263413865","userId":13865,"userInfo":{"headPic":"http://thirdwx.qlogo.cn/mmopen/vi_32/lW78GWgKWyJZNd7tVSQ0jKkPw9SmTjHbUGbCtscOHwcoibHq8CyQhBHic8qjzopcJ1QEYqTj8vJmLBRlkUlTXccQ/132","id":13865,"lastLoginTime":1585486322000,"nickName":"。_agy","sex":1}}
+     * result : {"headPic":"http://thirdwx.qlogo.cn/mmopen/vi_32/PaAib7ArJj8MOGeg8fwlHI9u49YVa4mGm9zr3P97oEfChMJcw0qlyiawgrC4lbX18zA5X5WyKt4gb3zkfmSggmtw/132","nickName":"DJ慢羊羊_lRK","pwd":"R+0jdN3P4MXHPMFVe9cX5MbX5ulIXHJkfigPLKEeTBY5lUgxJWUNg0js1oGtbsKiLFL4ScqdmUbtHXIfrgQnWrwTNjf09OJLycbeJ+ka4+CV7I1eEqG8DtZPnQoCyxjoYMjO4soDl6EX9YgqaZp3DlUH4pXrYHYz58YyFkSeJEk=","sessionId":"15875568918051430","userId":1430,"userName":"5DLRlEjWCqsz3GFic","whetherFaceId":2,"whetherVip":2}
      * message : 登陆成功
      * status : 0000
      */
@@ -43,14 +43,48 @@ public class WeixinEntity {
 
     public static class ResultBean {
         /**
-         * sessionId : 158548632263413865
-         * userId : 13865
-         * userInfo : {"headPic":"http://thirdwx.qlogo.cn/mmopen/vi_32/lW78GWgKWyJZNd7tVSQ0jKkPw9SmTjHbUGbCtscOHwcoibHq8CyQhBHic8qjzopcJ1QEYqTj8vJmLBRlkUlTXccQ/132","id":13865,"lastLoginTime":1585486322000,"nickName":"。_agy","sex":1}
+         * headPic : http://thirdwx.qlogo.cn/mmopen/vi_32/PaAib7ArJj8MOGeg8fwlHI9u49YVa4mGm9zr3P97oEfChMJcw0qlyiawgrC4lbX18zA5X5WyKt4gb3zkfmSggmtw/132
+         * nickName : DJ慢羊羊_lRK
+         * pwd : R+0jdN3P4MXHPMFVe9cX5MbX5ulIXHJkfigPLKEeTBY5lUgxJWUNg0js1oGtbsKiLFL4ScqdmUbtHXIfrgQnWrwTNjf09OJLycbeJ+ka4+CV7I1eEqG8DtZPnQoCyxjoYMjO4soDl6EX9YgqaZp3DlUH4pXrYHYz58YyFkSeJEk=
+         * sessionId : 15875568918051430
+         * userId : 1430
+         * userName : 5DLRlEjWCqsz3GFic
+         * whetherFaceId : 2
+         * whetherVip : 2
          */
 
+        private String headPic;
+        private String nickName;
+        private String pwd;
         private String sessionId;
         private int userId;
-        private UserInfoBean userInfo;
+        private String userName;
+        private int whetherFaceId;
+        private int whetherVip;
+
+        public String getHeadPic() {
+            return headPic;
+        }
+
+        public void setHeadPic(String headPic) {
+            this.headPic = headPic;
+        }
+
+        public String getNickName() {
+            return nickName;
+        }
+
+        public void setNickName(String nickName) {
+            this.nickName = nickName;
+        }
+
+        public String getPwd() {
+            return pwd;
+        }
+
+        public void setPwd(String pwd) {
+            this.pwd = pwd;
+        }
 
         public String getSessionId() {
             return sessionId;
@@ -68,68 +102,28 @@ public class WeixinEntity {
             this.userId = userId;
         }
 
-        public UserInfoBean getUserInfo() {
-            return userInfo;
+        public String getUserName() {
+            return userName;
         }
 
-        public void setUserInfo(UserInfoBean userInfo) {
-            this.userInfo = userInfo;
+        public void setUserName(String userName) {
+            this.userName = userName;
         }
 
-        public static class UserInfoBean {
-            /**
-             * headPic : http://thirdwx.qlogo.cn/mmopen/vi_32/lW78GWgKWyJZNd7tVSQ0jKkPw9SmTjHbUGbCtscOHwcoibHq8CyQhBHic8qjzopcJ1QEYqTj8vJmLBRlkUlTXccQ/132
-             * id : 13865
-             * lastLoginTime : 1585486322000
-             * nickName : 。_agy
-             * sex : 1
-             */
+        public int getWhetherFaceId() {
+            return whetherFaceId;
+        }
 
-            private String headPic;
-            private int id;
-            private long lastLoginTime;
-            private String nickName;
-            private int sex;
+        public void setWhetherFaceId(int whetherFaceId) {
+            this.whetherFaceId = whetherFaceId;
+        }
 
-            public String getHeadPic() {
-                return headPic;
-            }
+        public int getWhetherVip() {
+            return whetherVip;
+        }
 
-            public void setHeadPic(String headPic) {
-                this.headPic = headPic;
-            }
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public long getLastLoginTime() {
-                return lastLoginTime;
-            }
-
-            public void setLastLoginTime(long lastLoginTime) {
-                this.lastLoginTime = lastLoginTime;
-            }
-
-            public String getNickName() {
-                return nickName;
-            }
-
-            public void setNickName(String nickName) {
-                this.nickName = nickName;
-            }
-
-            public int getSex() {
-                return sex;
-            }
-
-            public void setSex(int sex) {
-                this.sex = sex;
-            }
+        public void setWhetherVip(int whetherVip) {
+            this.whetherVip = whetherVip;
         }
     }
 }

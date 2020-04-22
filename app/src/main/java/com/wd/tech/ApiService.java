@@ -9,6 +9,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HeaderMap;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -36,6 +37,9 @@ public interface ApiService {
     @POST //post有参
     @FormUrlEncoded
     Observable<ResponseBody> postDoParams(@Url String url, @FieldMap HashMap<String, Object> map);
+    @POST //post有参
+    @FormUrlEncoded
+    Observable<ResponseBody> postDoHeadParams(@Url String url, @HeaderMap HashMap<String, Object> head, @FieldMap HashMap<String, Object> map);
     @PUT //put 有参
     @FormUrlEncoded
     Observable<ResponseBody> putDoParams(@Url String url, @FieldMap HashMap<String, Object> map);

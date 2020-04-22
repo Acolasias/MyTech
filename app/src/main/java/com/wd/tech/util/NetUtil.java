@@ -242,6 +242,39 @@ public class NetUtil {
                     }
                 });
     }
+    //post头参
+    public void postDoHeadParams(String url, final Class cls, HashMap<String, Object> head,HashMap<String,Object> map, final ICallback iCallback){
+        api.postDoHeadParams(url,head,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        try {
+                            String string = responseBody.string();
+                            Object o = new Gson().fromJson(string, cls);
+                            iCallback.onSuccess(o);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iCallback.onError(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
     //post有参
     public void postDoParams(String url, final Class cls, HashMap<String,Object> map, final ICallback iCallback){
         api.postDoParams(url,map).subscribeOn(Schedulers.io())
